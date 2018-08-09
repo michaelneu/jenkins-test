@@ -1,13 +1,8 @@
-pipeline {
-    agent {
-        label 'linux'
-    }
+node {
+    label "linux"
+    checkout scm
 
-    stages {
-        stage('foo') {
-            steps {
-                sh 'docker run --rm node:alpine node --version'
-            }
-        }
+    docker.image('mysql:5') { c ->
+        sh 'node --version'
     }
 }
