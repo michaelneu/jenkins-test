@@ -1,33 +1,12 @@
 pipeline {
     agent {
-        docker { image 'node:alpine' }
+        label 'linux'
     }
 
     stages {
-        stage('install') {
-            agent {
-                label "linux"
-            }
+        stage('foo') {
             steps {
-                sh 'yarn install'
-            }
-        }
-
-        stage('build') {
-            agent {
-                label "linux"
-            }
-            steps {
-                sh 'yarn build'
-            }
-        }
-
-        stage('lint') {
-            agent {
-                label "linux"
-            }
-            steps {
-                sh 'yarn lint'
+                sh 'docker run --rm node:alpine node --version'
             }
         }
     }
