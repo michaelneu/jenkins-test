@@ -1,3 +1,3 @@
 function foo(x: number) {
-  return x * x;
+  return x *
 }
