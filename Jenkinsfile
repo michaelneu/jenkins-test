@@ -3,15 +3,14 @@ pipeline {
         docker { image 'node:alpine' }
     }
     stages {
-        stage("Clone") {
+        stage('build') {
             steps {
-                checkout scm
+                sh 'yarn build'
             }
         }
-        
-        stage('Test') {
+        stage('lint') {
             steps {
-                sh 'node --version'
+                sh 'yarn lint'
             }
         }
     }
