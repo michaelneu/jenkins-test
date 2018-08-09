@@ -2,7 +2,7 @@ node {
     label "linux"
     checkout scm
 
-    docker.image('mysql:5') { c ->
+    docker.image('node:alpine').inside {
         sh 'node --version'
     }
 }
