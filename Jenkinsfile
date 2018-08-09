@@ -1,5 +1,4 @@
-node {
-    label linux
+node (label: "linux") {
     checkout scm
 
     docker.image('node:alpine').inside {
