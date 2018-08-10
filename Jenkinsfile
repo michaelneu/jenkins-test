@@ -1,7 +1,21 @@
-node (label: 'linux') {
+stage('Checkout') {
     checkout scm
+}
 
-    docker.image('node:alpine').inside {
-        sh 'node --version'
+stage('Build') {
+    node (label: 'linux') {
+        docker.image('node:alpine').inside {
+            sh 'yarn install'
+            sh 'yarn build'
+        }
+    }
+}
+
+stage('Lint') {
+    node (label: 'linux') {
+        docker.image('node:alpine').inside {
+            sh 'yarn install'
+            sh 'yarn lint'
+        }
     }
 }
